@@ -1,0 +1,46 @@
+[user]
+	name = Itai Masuari
+	email = imasuari@habana.ai
+[pull]
+	rebase = true
+[log]
+	decorate = true
+[push]
+	default = simple
+[color]
+	ui = auto
+[color "diff"]
+	meta = cyan
+[core]
+	editor = vim
+[alias]
+	st = status
+	co = checkout
+	lg = log --graph --pretty=format:'%Cred%h%Creset - %s%Cgreen (%cr) %C(bold blue)%aN%Creset%C(yellow)%d%Creset' --abbrev-commit --date=relative
+	cp = cherry-pick
+	del = branch -D
+	br = branch
+    br-sort = "!bash -c 'for k in $(git branch | sed \"s/^..//\"); do branch_color=\"\"; if [ \"$(git rev-parse --abbrev-ref HEAD)\" == \"$k\" ]; then branch_color=\"\\e[31m\"; fi; echo -e \"$(git log --color=always -1 --pretty=format:\"%Cgreen%ci %Cblue%cr %Creset\" $k --)\t${branch_color} $k\\e[0m\"; done | sort | awk -F\"\\t\" \"{ printf \\\"%-55s %s\\\\n\\\", \\$1, \\$2 }\"'"
+    ; lg = log --graph --pretty=format:'%Cred%h%Creset - %s%Cgreen (%cr) %C(bold blue)%aN%Creset%C(yellow)%d%Creset' --abbrev-commit --date=relative --no-merges
+    ;br-sort = "!bash -c 'for k in $(git branch | sed \"s/^..//\"); do branch_color=\"\"; if [ \"$(git rev-parse --abbrev-ref HEAD)\" == \"$k\" ]; then branch_color=\"\\e[31m\"; fi; echo -e \"$(git log --color=always -1 --pretty=format:\"%Cgreen%ci %Cblue%cr %Creset\" $k --)\t${branch_color} $k\\e[0m\"; done | sort'"
+[diff]
+	tool = bcompare5
+[difftool "bc"]
+	trustExitCode = true
+[merge]
+	tool = bc
+[mergetool "bc"]
+	trustExitCode = true
+[blame]
+	coloring = auto
+[credential]
+	helper = cache --timeout=7776000
+[difftool "bc3"]
+	cmd = bcompare \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[rerere]
+	enabled = true
+[difftool "bcompare5"]
+	trustExitCode = true
+	cmd = env DISPLAY=:1 bcompare \"$LOCAL\" \"$REMOTE\"

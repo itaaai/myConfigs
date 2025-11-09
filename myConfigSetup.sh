@@ -38,5 +38,8 @@ create_symlink "$SCRIPT_DIR/nvim" "$HOME/.config/nvim"
 # 2️⃣ Tmux config
 create_symlink "$SCRIPT_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
+# 3️⃣ Git config
+create_symlink "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
+
 echo "✅ All symlinks created successfully."
 
