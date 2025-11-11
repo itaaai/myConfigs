@@ -5,4 +5,5 @@ return {
 	{
 		'tpope/vim-fugitive',
 	},
+	{ "numToStr/Comment.nvim", config = true },
 }
