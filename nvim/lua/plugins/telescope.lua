@@ -1,16 +1,17 @@
 return {
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make", -- compile the native extension
-		cond = vim.fn.executable("make") == 1,
-		config = function()
-			require("telescope").load_extension("fzf")
-		end,
-	},
+	-- {
+	-- 	"nvim-telescope/telescope-fzf-native.nvim",
+	-- 	build = "make", -- compile the native extension
+	-- 	cond = vim.fn.executable("make") == 1,
+	-- 	config = function()
+	-- 		require("telescope").load_extension("fzf")
+	-- 	end,
+	-- },
 	{
 		'nvim-telescope/telescope.nvim',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = 'make' },
 		},
 		config = function()
 			local actions = require('telescope.actions')
@@ -21,6 +22,11 @@ return {
 							["<C-k>"] = actions.move_selection_previous,  -- move to prev result
 							["<C-j>"] = actions.move_selection_next,      -- move to next result
 							["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
+							["<C-t>"] = actions.select_tab,               -- open in new tab
+						},
+						n = {
+							["<C-t>"] = actions.select_tab, -- open in new tab
+							["d"] = actions.delete_buffer, -- close buffers
 						}
 					}
 				},
