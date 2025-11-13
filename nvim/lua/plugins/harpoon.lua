@@ -36,5 +36,19 @@ return {
             { desc = "Open harpoon window" })
         vim.keymap.set("n", "<C-p>", function() harpoon:list():prev() end)
         vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end)
+
+        -- Jump to specific harpoon bookmarks
+        vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
+        vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
+        vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
+        vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
+
+        -- Jump to any harpoon bookmark by number (no limit)
+        vim.keymap.set("n", "<leader>h", function()
+            local num = vim.fn.input("Harpoon bookmark number: ")
+            if num ~= "" then
+                harpoon:list():select(tonumber(num))
+            end
+        end, { desc = "Jump to harpoon bookmark by number" })
     end
 }
