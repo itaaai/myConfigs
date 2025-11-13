@@ -74,6 +74,11 @@ return {
 			vim.keymap.set('n', '<leader>fi', function()
 				builtin.find_files({ cwd = "~/.config/nvim/" });
 			end)
+
+			-- show jump list with current position selected
+			vim.keymap.set('n', '<leader>fj', function()
+				builtin.jumplist({ initial_mode = "normal", default_selection_index = 2 })
+			end, { desc = 'Telescope jumplist' })
 		end
 	},
 }
